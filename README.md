@@ -1,49 +1,116 @@
 # MiV_Pleyer
 Muzički i Video Player
 
-Šta radi ovaj program?
-Ovaj program predstavlja interaktivni muzički i video plejer sa sledećim funkcionalnostima:
+# Uputstvo za korišćenje programa
 
-Prikaz foldera i fajlova:
+Ovaj PHP program služi za prikazivanje strukture foldera i fajlova na interaktivan način. Program omogućava pretragu i reprodukciju audio (`.mp3`) i video (`.mp4`) fajlova sa ekvilajzerom.
 
-Pregled foldera i fajlova u zadanom direktorijumu na hijerarhijski način (kao stablo).
-Fajlovi sa ekstenzijama .mp3 (audio) i .mp4 (video) su posebno označeni i dostupni za reprodukciju.
-Reprodukcija fajlova:
+---
 
-Audio i video fajlovi se mogu reprodukovati direktno iz liste.
-Prikazuje naziv trenutno aktivnog fajla i foldera.
-Vizuelizacija i ekvilajzer:
+## Funkcionalnosti
 
-Sadrži grafičku vizualizaciju zvuka (ekvilajzer) za audio fajlove.
-Kontrole za podešavanje basa, visokih tonova i pojačanja.
-Pretraga:
+1. **Prikaz foldera i fajlova**:
+   - Program prikazuje hijerarhijsku strukturu foldera i fajlova.
+   - Foldere možete otvarati i zatvarati klikom na ikonicu foldera.
 
-Omogućava korisniku da pretražuje fajlove i foldere po imenu.
-Navigacija kroz foldere:
+2. **Reprodukcija fajlova**:
+   - Klikom na audio ili video fajl pokreće se odgovarajući plejer:
+     - **Audio fajlovi**: Prikazuju se u audio plejeru sa opcijama ekvilajzera.
+     - **Video fajlovi**: Prikazuju se u video plejeru.
 
-Korisnik može da otvara/zatvara prikaz podfoldera klikom na folder.
-Kako koristiti?
-Instalacija i pokretanje:
+3. **Pretraga**:
+   - Omogućena je pretraga fajlova i foldera pomoću pretraživačke trake.
 
-Postavite PHP fajl u korenski direktorijum koji sadrži vaše audio i video fajlove.
-Ažurirajte promenljivu $rootDir sa putanjom ka folderu koji želite da pregledate.
-Prikaz na stranici:
+4. **Ekvilajzer**:
+   - Kontrole za podešavanje jačine zvuka (Gain), basa (Bass), i visokih tonova (Treble).
 
-Pokrenite PHP server i otvorite fajl u web pretraživaču (npr. http://localhost/naziv-fajla.php).
-Navigacija i reprodukcija:
+5. **Automatska reprodukcija**:
+   - Kada fajl završi, program automatski prelazi na sledeći fajl u listi.
 
-Kliknite na ime foldera da biste videli njegov sadržaj.
-Kliknite na ime fajla za reprodukciju (audio ili video).
-Aktivni fajl se vizualno ističe (crvenom bojom).
-Podešavanje zvuka:
+---
 
-Podesite pojačanje (gain), bas (bass) i visoke tonove (treble) koristeći klizače u sekciji ekvilajzera.
-Pretraga:
+## Kako koristiti program
 
-Upišite naziv fajla ili foldera u polje za pretragu kako biste ga pronašli.
-Sledeći fajl:
+1. **Postavite direktorijum sa fajlovima**:
+   - U PHP kodu zamenite vrednost promenljive `$rootDir` putanjom do vašeg foldera:
+     ```php
+     $rootDir = './Putanja_do_foldera';
+     ```
 
-Nakon završetka reprodukcije trenutnog fajla, automatski se prelazi na sledeći fajl u listi.
-Napomena:
-Program zahteva moderni web pregledač (za vizuelizaciju i audio/video reprodukciju).
-PHP server mora imati pristup folderima i fajlovima definisanim u $rootDir.
+2. **Pokrenite aplikaciju**:
+   - Sačuvajte kod u `.php` fajl i otvorite ga u pregledaču putem lokalnog servera (npr. XAMPP, WAMP).
+
+3. **Navigacija kroz foldere**:
+   - Kliknite na ikonu foldera da biste prikazali sadržaj.
+   - Klikom na ime fajla pokrećete reprodukciju.
+
+4. **Pretražujte fajlove**:
+   - Unesite ključnu reč u polje za pretragu na vrhu stranice.
+
+5. **Koristite ekvilajzer**:
+   - Podesite parametre reprodukcije (Gain, Bass, Treble) koristeći klizače.
+
+---
+
+## Struktura koda
+
+### 1. **PHP funkcija**: `prikaziFoldereIFajlove`
+- Rekurzivno prolazi kroz foldere i fajlove do određenog nivoa.
+- Prikazuje foldere i fajlove koji zadovoljavaju kriterijume (npr. ekstenzija `.mp3` i `.mp4`).
+
+### 2. **HTML deo**:
+- Sadrži elemente za prikaz foldera, plejera i kontrole ekvilajzera.
+
+### 3. **JavaScript deo**:
+- Implementira funkcionalnosti kao što su:
+  - Reprodukcija fajlova.
+  - Prikaz trenutnog fajla.
+  - Pretraga.
+  - Kontrola ekvilajzera.
+
+---
+
+## Primer korišćenja
+
+1. Struktura foldera:
+
+MOMO/ ├── folder1/ │ ├── pesma1.mp3 │ ├── pesma2.mp3 ├── folder2/ ├── video1.mp4
+
+2. Pretraga:
+- Unesite "pesma" u pretraživač da biste pronašli sve fajlove sa tom ključnom reči.
+
+3. Reprodukcija:
+- Kliknite na fajl `pesma1.mp3` da biste pokrenuli reprodukciju u audio plejeru.
+
+---
+
+## Podešavanja i prilagođavanja
+
+1. **Prilagodite nivo rekurzije**:
+- Izmenite vrednost `$maksimalniNivo` u funkciji `prikaziFoldereIFajlove`.
+
+2. **Podržane ekstenzije**:
+- Dodajte ili izmenite uslov za podržane fajlove u PHP kodu:
+  ```php
+  if (preg_match('/\.(mp3|mp4|wav)$/i', $entry)) {
+      // Vaša logika
+  }
+  ```
+
+3. **Izgled stranice**:
+- Prilagodite CSS stilove prema vašim potrebama.
+
+---
+
+## Zahtevi
+
+- **PHP server**: Lokalni server kao što su XAMPP, WAMP ili bilo koji PHP server.
+- **Pregledač**: Moderan pregledač sa podrškom za HTML5 i JavaScript.
+- **Fajlovi**: Audio (`.mp3`) i video (`.mp4`) fajlovi za reprodukciju.
+
+---
+
+## Napomena
+
+- U slučaju problema sa reprodukcijom, proverite da li je putanja do fajlova tačno postavljena.
+- Ako se ne prikazuju svi folderi i fajlovi, povećajte vrednost `$maksimalniNivo`.
