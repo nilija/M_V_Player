@@ -1,5 +1,5 @@
 # MiV_Pleyer
-Muzički i Video Plejer
+Muzički i Video Player
 
 Šta radi ovaj program?
 Ovaj program predstavlja interaktivni muzički i video plejer sa sledećim funkcionalnostima:
